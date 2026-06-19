@@ -165,43 +165,40 @@ window.portfolioContent = {
       technologies: ["Python", "ANFIS", "Data preprocessing", "Prediction modelling", "Neural Networks"],
       mediaLabel: "Forecast Model Preview",
       links: [
-        { label: "GitHub", url: "#", uiOnly: true }
+          { label: "GitHub", url: "https://github.com/cheah20/FUZZY-LOGIC", uiOnly: true }
       ]
     },
     {
-      title: "Stress & Burnout Expert System",
-      category: "Rule-Based AI",
+      title: "School Management System",
+      category: "C++ and MariaDB Connection",
       description:
-        "A CLIPS-based expert system that evaluates user responses and provides structured stress or burnout guidance through transparent rule-based reasoning.",
-      technologies: ["CLIPS", "Expert system", "Rule base", "Decision support"],
-      mediaLabel: "Inference Flow Placeholder",
+        "A school management system built with C++ and connected to a MariaDB database for efficient data handling and retrieval.",
+      technologies: ["C++", "MariaDB", "Database connectivity", "System design", "SQL"],
+      mediaLabel: "System Architecture Placeholder",
       links: [
-        { label: "GitHub", url: "#", uiOnly: true },
-        { label: "Case Study", url: "#", uiOnly: true }
+          { label: "GitHub", url: "https://github.com/JumpingLamp/SchoolManagementSystem", uiOnly: true },
       ]
     },
     {
-      title: "Blood Bank Database System",
-      category: "Database System",
+      title: "Hotel Management System",
+      category: "Java and JDBI Integration",
       description:
-        "A database design and implementation project for managing donors, blood inventory, requests, and hospital-related records with a structured relational model.",
+        "A simple hotel management system implemented in Java with Java interface element and JDBI for CRUDS operation",
       technologies: ["SQL", "ERD", "Database design", "Normalisation"],
       mediaLabel: "Database Schema Preview",
       links: [
-        { label: "GitHub", url: "#", uiOnly: true },
-        { label: "Diagram", url: "#", uiOnly: true }
+          { label: "GitHub", url: "https://github.com/JumpingLamp/2BAXI-OOP-Project", uiOnly: true },
       ]
     },
     {
-      title: "AI Study Planner Prototype",
-      category: "AI + HCI",
+      title: "Optimisation of Staff Scheduling Using Genetic Algorithms",
+      category: "Genetic Algorithms",
       description:
-        "A concept prototype for a study planning assistant that prioritises tasks, explains recommendations, and keeps the interface simple for students under workload pressure.",
-      technologies: ["JavaScript", "HCI", "Heuristics", "AI concept design"],
-      mediaLabel: "Planner Interface Placeholder",
+        "An optimisation project for scheduling staff using genetic algorithms to improve efficiency and resource allocation.",
+      technologies: ["Genetic Algorithms", "Optimisation", "Scheduling"],
+      mediaLabel: "Genetic Algorithm Implementation",
       links: [
-        { label: "Prototype", url: "#", uiOnly: true },
-        { label: "Report", url: "#", uiOnly: true }
+          { label: "Prototype", url: "https://github.com/JumpingLamp/EvoProject", uiOnly: true },
       ]
     }
   ],
