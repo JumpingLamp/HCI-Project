@@ -206,11 +206,7 @@
             <div class="timeline-content">
               <span class="eyebrow">${escapeHtml(item.period)}</span>
               <h3>${escapeHtml(item.title)}</h3>
-              ${
-                item.position
-                  ? `<p class="academic-position"><span>Position</span>${escapeHtml(item.position)}</p>`
-                  : ""
-              }
+              <strong>${escapeHtml(item.position)}</strong>
               <strong>${escapeHtml(item.institution)}</strong>
               <p>${escapeHtml(item.description)}</p>
               <div class="tag-row">${renderTags(item.tags)}</div>

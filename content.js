@@ -107,7 +107,7 @@ window.portfolioContent = {
     {
       period: "Ongoing",
       title: "Computer Science (Artificial Intelligence)",
-      position: "Computer Science (AI) Undergraduate",
+      position: "CGPA 3.91",
       institution: "Universiti Teknikal Malaysia Melaka (UTeM)",
       description:
         "Currently pursuing Computer Science with AI focus, covering programming, data structures, databases, machine learning, expert systems, software engineering, and HCI.",
