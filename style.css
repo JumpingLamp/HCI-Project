@@ -372,6 +372,7 @@ h3 {
 .skill-card,
 .project-card,
 .experience-card,
+.gallery-slide,
 .contact-panel,
 .contact-form,
 .metric-card,
@@ -604,7 +605,8 @@ h3 {
 .metric-card:hover,
 .skill-card:hover,
 .project-card:hover,
-.experience-card:hover {
+.experience-card:hover,
+.gallery-slide:hover {
   border-color: color-mix(in srgb, var(--accent) 42%, var(--border));
 }
 
@@ -878,6 +880,134 @@ h3 {
 .evidence-list {
   display: grid;
   gap: var(--space-1);
+}
+
+.gallery-shell {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.gallery-track {
+  display: flex;
+  gap: var(--space-3);
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  padding: var(--space-1) 2px var(--space-3);
+  scroll-behavior: smooth;
+  scroll-padding-inline: max(16px, calc((100vw - 1120px) / 2));
+  scroll-snap-type: x mandatory;
+  scrollbar-color: var(--accent) var(--surface-raised);
+  scrollbar-width: thin;
+}
+
+.gallery-track::-webkit-scrollbar {
+  height: 10px;
+}
+
+.gallery-track::-webkit-scrollbar-track {
+  background: var(--surface-raised);
+  border-radius: var(--radius);
+}
+
+.gallery-track::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: var(--radius);
+}
+
+.gallery-slide {
+  position: relative;
+  flex: 0 0 min(76vw, 560px);
+  overflow: hidden;
+  scroll-snap-align: center;
+}
+
+.gallery-slide img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  height: auto;
+  object-fit: cover;
+  background: var(--accent-soft);
+  transition: filter 220ms ease, transform 220ms ease;
+}
+
+.gallery-slide:hover img,
+.gallery-slide:focus img,
+.gallery-slide:focus-within img {
+  filter: brightness(0.86) saturate(1.08);
+  transform: scale(1.035);
+}
+
+.gallery-caption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  color: #ffffff;
+  background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.72));
+  opacity: 0.92;
+  transform: translateY(8px);
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.gallery-slide:hover .gallery-caption,
+.gallery-slide:focus .gallery-caption,
+.gallery-slide:focus-within .gallery-caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gallery-caption span {
+  display: inline-grid;
+  width: 38px;
+  height: 34px;
+  place-items: center;
+  flex: 0 0 auto;
+  font-size: 0.78rem;
+  font-weight: 900;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: var(--radius-sm);
+}
+
+.gallery-caption strong {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+}
+
+.gallery-dots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-1);
+}
+
+.gallery-dot {
+  width: 34px;
+  height: 8px;
+  padding: 0;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: width 180ms ease, background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.gallery-dot:hover,
+.gallery-dot:focus-visible {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.gallery-dot.is-active {
+  width: 48px;
+  background: var(--accent);
+  border-color: var(--accent-strong);
 }
 
 .contact-section {
@@ -1197,6 +1327,22 @@ textarea {
   .button,
   .project-link {
     width: 100%;
+  }
+
+  .gallery-track {
+    gap: var(--space-2);
+    margin-inline: -12px;
+    padding-inline: 12px;
+    scroll-padding-inline: 12px;
+  }
+
+  .gallery-slide {
+    flex-basis: min(86vw, 420px);
+  }
+
+  .gallery-caption {
+    align-items: flex-end;
+    padding: var(--space-2);
   }
 }
 

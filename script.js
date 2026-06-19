@@ -61,6 +61,7 @@
     renderSkills();
     renderProjects();
     renderExperience();
+    renderLifeGallery();
     renderContact();
     renderFooter();
 
@@ -69,6 +70,7 @@
     setupSmoothLinks();
     setupRevealAnimations();
     setupActiveNavigation();
+    setupLifeGallery();
     setupContactForm();
     setupBackToTop();
     setupUiOnlyLinks();
@@ -347,6 +349,63 @@
     );
   }
 
+  function renderLifeGallery() {
+    const gallery = data.lifeGallery;
+    const items = gallery?.items || [];
+    const slides = items
+      .map(
+        (item, index) => `
+          <article class="gallery-slide" id="gallerySlide${index + 1}" aria-label="${escapeHtml(
+            `${item.caption} slide`
+          )}" tabindex="0">
+            <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.alt)}" loading="lazy">
+            <div class="gallery-caption">
+              <span>${escapeHtml(String(index + 1).padStart(2, "0"))}</span>
+              <strong>${escapeHtml(item.caption)}</strong>
+            </div>
+          </article>
+        `
+      )
+      .join("");
+
+    const dots = items
+      .map(
+        (item, index) => `
+          <button
+            class="gallery-dot${index === 0 ? " is-active" : ""}"
+            type="button"
+            data-gallery-dot="${index}"
+            aria-label="Show ${escapeHtml(item.caption)}"
+            aria-controls="lifeGalleryTrack"
+            ${index === 0 ? 'aria-current="true"' : ""}
+          ></button>
+        `
+      )
+      .join("");
+
+    $("#life-gallery").innerHTML = sectionShell(
+      "lifeGalleryTitle",
+      gallery.eyebrow,
+      gallery.title,
+      gallery.lead,
+      `
+        <div class="gallery-shell reveal">
+          <div
+            class="gallery-track"
+            id="lifeGalleryTrack"
+            tabindex="0"
+            aria-label="Life gallery horizontal slideshow"
+          >
+            ${slides}
+          </div>
+          <div class="gallery-dots" aria-label="Life gallery slide controls">
+            ${dots}
+          </div>
+        </div>
+      `
+    );
+  }
+
   function renderContact() {
     const contactLinks = [
       { label: "Email", url: `mailto:${data.profile.email}` },
@@ -524,6 +583,81 @@
       const isActive = link.dataset.navLink === id;
       link.toggleAttribute("aria-current", isActive);
     });
+  }
+
+  function setupLifeGallery() {
+    const track = $("#lifeGalleryTrack");
+    if (!track) {
+      return;
+    }
+
+    const slides = $$(".gallery-slide", track);
+    const dots = $$("[data-gallery-dot]");
+
+    const setActiveDot = (index) => {
+      dots.forEach((dot, dotIndex) => {
+        const isActive = dotIndex === index;
+        dot.classList.toggle("is-active", isActive);
+        if (isActive) {
+          dot.setAttribute("aria-current", "true");
+        } else {
+          dot.removeAttribute("aria-current");
+        }
+      });
+    };
+
+    dots.forEach((dot) => {
+      dot.addEventListener("click", () => {
+        const slide = slides[Number(dot.dataset.galleryDot)];
+        if (slide) {
+          slide.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+        }
+      });
+    });
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActiveDot(slides.indexOf(entry.target));
+            }
+          });
+        },
+        {
+          root: track,
+          threshold: 0.62
+        }
+      );
+
+      slides.forEach((slide) => observer.observe(slide));
+      return;
+    }
+
+    let ticking = false;
+    track.addEventListener(
+      "scroll",
+      () => {
+        if (ticking) {
+          return;
+        }
+
+        window.requestAnimationFrame(() => {
+          const trackCenter = track.scrollLeft + track.clientWidth / 2;
+          const closestIndex = slides.reduce((closest, slide, index) => {
+            const slideCenter = slide.offsetLeft + slide.clientWidth / 2;
+            const distance = Math.abs(trackCenter - slideCenter);
+            return distance < closest.distance ? { index, distance } : closest;
+          }, { index: 0, distance: Number.POSITIVE_INFINITY }).index;
+
+          setActiveDot(closestIndex);
+          ticking = false;
+        });
+
+        ticking = true;
+      },
+      { passive: true }
+    );
   }
 
   function setupContactForm() {

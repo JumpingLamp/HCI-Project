@@ -26,6 +26,7 @@ window.portfolioContent = {
     { id: "skills", label: "Skills" },
     { id: "projects", label: "Projects" },
     { id: "experience", label: "Experience" },
+    { id: "life-gallery", label: "Gallery" },
     { id: "contact", label: "Contact" }
   ],
 
@@ -232,6 +233,40 @@ window.portfolioContent = {
       evidence: ["Problem solving", "Presentation practice", "Continuous learning"]
     }
   ],
+
+  lifeGallery: {
+    title: "Life Gallery",
+    eyebrow: "Moments & Activities",
+    lead:
+      "A horizontal activity reel for campus moments, events, project work, and personal development highlights.",
+    items: [
+      {
+        image: "assets/test.png",
+        alt: "Placeholder for campus activity moment",
+        caption: "Campus activities"
+      },
+      {
+        image: "assets/test.png",
+        alt: "Placeholder for university event participation",
+        caption: "Events and participation"
+      },
+      {
+        image: "assets/test.png",
+        alt: "Placeholder for project behind the scenes",
+        caption: "Projects behind the scenes"
+      },
+      {
+        image: "assets/test.png",
+        alt: "Placeholder for group assignment collaboration",
+        caption: "Group assignment moments"
+      },
+      {
+        image: "assets/test.png",
+        alt: "Placeholder for personal development activity",
+        caption: "Personal development"
+      }
+    ]
+  },
 
   contact: {
     heading: "Open to academic collaboration, internships, and AI project discussions.",
