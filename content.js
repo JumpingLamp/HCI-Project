@@ -13,9 +13,9 @@ window.portfolioContent = {
     tagline: "Building human-centred AI systems that make complex decisions easier to understand.",
     intro:
       "I am a Computer Science (AI) undergraduate focused on machine learning, expert systems, software engineering, and usable interface design. My work combines technical problem solving with Human-Computer Interaction principles so AI solutions feel clear, trustworthy, and practical.",
-    email: "student.email@example.com",
-    github: "https://github.com/your-username",
-    linkedin: "https://www.linkedin.com/in/your-profile",
+    email: "gohkaiyang176@gmail.com",
+    github: "https://github.com/JumpingLamp",
+    linkedin: "https://www.linkedin.com/in/goh-kai-yang-367121104",
     resumeFile: "#"
   },
 
@@ -30,9 +30,9 @@ window.portfolioContent = {
   ],
 
   homeMetrics: [
-    { label: "Current Track", value: "AI Undergraduate" },
-    { label: "Core Evidence", value: "4 Projects" },
-    { label: "Design Lens", value: "HCI Focus" }
+    { label: "Current Track", value: "Computer Science (AI)" },
+    { label: "Core Evidence", value: "3 Projects" },
+    { label: "Career Focus", value: "AI, Data Science" }
   ],
 
   quickLinks: [
@@ -87,29 +87,30 @@ window.portfolioContent = {
 
   education: [
     {
+    period: "Secondary School",
+    title: "SPM",
+    institution: "SMJK Kwang Hua",
+    description:
+        "Completed secondary education with emphasis on core academic subjects including Mathematics, Sciences, and Languages. Built foundational skills in analytical thinking, problem solving, time management, and examination preparation through structured coursework and assessments.",
+    tags: ["Academic Foundation", "Mathematics", "Science", "Language Skills", "Problem Solving", "Time Management"]
+    },
+    {
       period: "Pre-University",
       title: "STPM Background",
-      institution: "STPM",
+      institution: "SMK Tinggi Klang",
       description:
         "Completed pre-university studies with emphasis on analytical thinking, independent learning, problem solving, and preparation for computing-related higher education.",
       tags: ["Analytical thinking", "Mathematics foundation", "Study discipline"]
     },
     {
-      period: "University",
+      period: "Ongoing",
       title: "Computer Science (Artificial Intelligence)",
       institution: "Universiti Teknikal Malaysia Melaka (UTeM)",
       description:
         "Currently pursuing Computer Science with AI focus, covering programming, data structures, databases, machine learning, expert systems, software engineering, and HCI.",
       tags: ["Artificial Intelligence", "Software engineering", "HCI", "Databases"]
     },
-    {
-      period: "Ongoing",
-      title: "Project-Based Learning",
-      institution: "Academic Coursework and Group Projects",
-      description:
-        "Developing practical systems through individual and team assignments, with attention to documentation, usability, testing, and presentation quality.",
-      tags: ["Teamwork", "Prototype design", "Documentation", "Evaluation"]
-    }
+    
   ],
 
   skills: [
@@ -158,14 +159,13 @@ window.portfolioContent = {
   projects: [
     {
       title: "ANFIS Stock Prediction System",
-      category: "AI Prediction",
+      category: "Fuzzy Logic and Neural Network Prediction",
       description:
         "A stock price prediction prototype using Adaptive Neuro-Fuzzy Inference System concepts to model market behaviour and compare predicted trends with actual values.",
-      technologies: ["Python", "ANFIS", "Data preprocessing", "Prediction modelling"],
+      technologies: ["Python", "ANFIS", "Data preprocessing", "Prediction modelling", "Neural Networks"],
       mediaLabel: "Forecast Model Preview",
       links: [
-        { label: "GitHub", url: "#", uiOnly: true },
-        { label: "Demo", url: "#", uiOnly: true }
+        { label: "GitHub", url: "#", uiOnly: true }
       ]
     },
     {
