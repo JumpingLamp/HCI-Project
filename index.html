@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Personal academic portfolio for a Computer Science (AI) undergraduate student."
+    >
+    <title>Computer Science (AI) Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="content.js" defer></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header" data-header>
+      <nav class="nav-shell" aria-label="Primary navigation">
+        <a class="brand" href="#home" aria-label="Go to home section">
+          <span class="brand-mark" aria-hidden="true">AI</span>
+          <span class="brand-text">
+            <span id="brandName">Academic Profile</span>
+            <small>Intelligence System</small>
+          </span>
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-controls="primaryNavigation"
+          aria-expanded="false"
+          aria-label="Open navigation menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="nav-panel">
+          <ul class="nav-links" id="primaryNavigation"></ul>
+          <button
+            class="theme-toggle"
+            type="button"
+            id="themeToggle"
+            aria-label="Switch theme"
+            aria-pressed="false"
+          >
+            <span class="theme-toggle-track" aria-hidden="true">
+              <span class="theme-toggle-dot"></span>
+            </span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="section hero-section" id="home" aria-labelledby="homeTitle"></section>
+      <section class="section" id="about" aria-labelledby="aboutTitle"></section>
+      <section class="section section-alt" id="academic" aria-labelledby="academicTitle"></section>
+      <section class="section" id="skills" aria-labelledby="skillsTitle"></section>
+      <section class="section section-alt" id="projects" aria-labelledby="projectsTitle"></section>
+      <section class="section" id="experience" aria-labelledby="experienceTitle"></section>
+      <section class="section contact-section" id="contact" aria-labelledby="contactTitle"></section>
+    </main>
+
+    <footer class="site-footer" id="siteFooter"></footer>
+
+    <button class="back-to-top" type="button" aria-label="Back to top" hidden>
+      <span aria-hidden="true">^</span>
+    </button>
+
+    <div class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+  </body>
+</html>
