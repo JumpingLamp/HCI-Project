@@ -89,6 +89,7 @@ window.portfolioContent = {
     {
     period: "Secondary School",
     title: "SPM",
+    position: "4A+ 3A 3A-",
     institution: "SMJK Kwang Hua",
     description:
         "Completed secondary education with emphasis on core academic subjects including Mathematics, Sciences, and Languages. Built foundational skills in analytical thinking, problem solving, time management, and examination preparation through structured coursework and assessments.",
@@ -97,6 +98,7 @@ window.portfolioContent = {
     {
       period: "Pre-University",
       title: "STPM Background",
+      position: "CGPA 3.84",
       institution: "SMK Tinggi Klang",
       description:
         "Completed pre-university studies with emphasis on analytical thinking, independent learning, problem solving, and preparation for computing-related higher education.",
@@ -105,6 +107,7 @@ window.portfolioContent = {
     {
       period: "Ongoing",
       title: "Computer Science (Artificial Intelligence)",
+      position: "Computer Science (AI) Undergraduate",
       institution: "Universiti Teknikal Malaysia Melaka (UTeM)",
       description:
         "Currently pursuing Computer Science with AI focus, covering programming, data structures, databases, machine learning, expert systems, software engineering, and HCI.",
