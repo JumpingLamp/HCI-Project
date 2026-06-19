@@ -355,9 +355,9 @@
     const slides = items
       .map(
         (item, index) => `
-          <article class="gallery-slide" id="gallerySlide${index + 1}" aria-label="${escapeHtml(
+          <article class="gallery-slide${index === 0 ? " is-active" : ""}" id="gallerySlide${index + 1}" aria-label="${escapeHtml(
             `${item.caption} slide`
-          )}" tabindex="0">
+          )}" tabindex="0" ${index === 0 ? 'aria-current="true"' : ""}>
             <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.alt)}" loading="lazy">
             <div class="gallery-caption">
               <span>${escapeHtml(String(index + 1).padStart(2, "0"))}</span>
@@ -394,7 +394,7 @@
             class="gallery-track"
             id="lifeGalleryTrack"
             tabindex="0"
-            aria-label="Life gallery horizontal slideshow"
+            aria-label="Life gallery cover flow carousel"
           >
             ${slides}
           </div>
@@ -593,8 +593,28 @@
 
     const slides = $$(".gallery-slide", track);
     const dots = $$("[data-gallery-dot]");
+    if (!slides.length) {
+      return;
+    }
 
-    const setActiveDot = (index) => {
+    let activeIndex = 0;
+    let frameId = 0;
+
+    const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+    const setActiveIndex = (index) => {
+      activeIndex = index;
+
+      slides.forEach((slide, slideIndex) => {
+        const isActive = slideIndex === index;
+        slide.classList.toggle("is-active", isActive);
+        if (isActive) {
+          slide.setAttribute("aria-current", "true");
+        } else {
+          slide.removeAttribute("aria-current");
+        }
+      });
+
       dots.forEach((dot, dotIndex) => {
         const isActive = dotIndex === index;
         dot.classList.toggle("is-active", isActive);
@@ -606,58 +626,124 @@
       });
     };
 
+    const updateCoverFlow = () => {
+      frameId = 0;
+
+      const trackRect = track.getBoundingClientRect();
+      const trackCenter = trackRect.left + trackRect.width / 2;
+      let closestIndex = 0;
+      let closestDistance = Number.POSITIVE_INFINITY;
+
+      const slideMetrics = slides.map((slide, index) => {
+        const slideRect = slide.getBoundingClientRect();
+        const slideCenter = slideRect.left + slideRect.width / 2;
+        const distance = Math.abs(trackCenter - slideCenter);
+        const rawOffset = (slideCenter - trackCenter) / Math.max(slideRect.width, 1);
+
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
+
+        return {
+          slide,
+          offset: clamp(rawOffset, -2.25, 2.25)
+        };
+      });
+
+      slideMetrics.forEach(({ slide, offset }, index) => {
+        const isActive = index === closestIndex;
+        const transformOffset = isActive ? 0 : offset;
+        const depth = isActive ? 0 : Math.min(Math.abs(transformOffset), 2.25);
+        const scale = isActive ? 1 : 1 - Math.min(depth * 0.17, 0.36);
+        const opacity = isActive ? 1 : 1 - Math.min(depth * 0.28, 0.56);
+        const brightness = isActive ? 1 : 1 - Math.min(depth * 0.34, 0.54);
+        const rotate = isActive ? 0 : clamp(transformOffset * -16, -24, 24);
+        const translateY = isActive ? 0 : Math.min(depth * 24, 44);
+        const translateX = isActive ? 0 : clamp(transformOffset * -16, -34, 34);
+        const zIndex = isActive ? 120 : Math.round(100 - depth * 28);
+
+        slide.style.setProperty("--cover-scale", scale.toFixed(3));
+        slide.style.setProperty("--cover-opacity", opacity.toFixed(3));
+        slide.style.setProperty("--cover-brightness", brightness.toFixed(3));
+        slide.style.setProperty("--cover-rotate", `${rotate.toFixed(2)}deg`);
+        slide.style.setProperty("--cover-translate-x", `${translateX.toFixed(2)}px`);
+        slide.style.setProperty("--cover-translate-y", `${translateY.toFixed(2)}px`);
+        slide.style.setProperty("--cover-z", String(zIndex));
+        slide.dataset.coverPosition = offset < -0.25 ? "left" : offset > 0.25 ? "right" : "center";
+      });
+
+      setActiveIndex(closestIndex);
+    };
+
+    const requestCoverFlowUpdate = () => {
+      if (!frameId) {
+        frameId = window.requestAnimationFrame(updateCoverFlow);
+      }
+    };
+
+    const scrollToSlide = (index, behavior = "smooth") => {
+      const slide = slides[index];
+      if (slide) {
+        slide.scrollIntoView({ behavior, block: "nearest", inline: "center" });
+      }
+    };
+
     dots.forEach((dot) => {
       dot.addEventListener("click", () => {
-        const slide = slides[Number(dot.dataset.galleryDot)];
-        if (slide) {
-          slide.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
-        }
+        scrollToSlide(Number(dot.dataset.galleryDot));
       });
     });
 
-    if ("IntersectionObserver" in window) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setActiveDot(slides.indexOf(entry.target));
-            }
-          });
-        },
-        {
-          root: track,
-          threshold: 0.62
-        }
-      );
+    track.addEventListener("scroll", requestCoverFlowUpdate, { passive: true });
 
-      slides.forEach((slide) => observer.observe(slide));
-      return;
-    }
-
-    let ticking = false;
     track.addEventListener(
-      "scroll",
-      () => {
-        if (ticking) {
+      "wheel",
+      (event) => {
+        if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) {
           return;
         }
 
-        window.requestAnimationFrame(() => {
-          const trackCenter = track.scrollLeft + track.clientWidth / 2;
-          const closestIndex = slides.reduce((closest, slide, index) => {
-            const slideCenter = slide.offsetLeft + slide.clientWidth / 2;
-            const distance = Math.abs(trackCenter - slideCenter);
-            return distance < closest.distance ? { index, distance } : closest;
-          }, { index: 0, distance: Number.POSITIVE_INFINITY }).index;
+        const maxScroll = track.scrollWidth - track.clientWidth;
+        const canScrollHorizontally =
+          (event.deltaY < 0 && track.scrollLeft > 0) ||
+          (event.deltaY > 0 && track.scrollLeft < maxScroll - 1);
 
-          setActiveDot(closestIndex);
-          ticking = false;
-        });
+        if (!canScrollHorizontally) {
+          return;
+        }
 
-        ticking = true;
+        event.preventDefault();
+        track.scrollLeft += event.deltaY * 1.15;
+        requestCoverFlowUpdate();
       },
-      { passive: true }
+      { passive: false }
     );
+
+    track.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        scrollToSlide(Math.min(activeIndex + 1, slides.length - 1));
+      }
+
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        scrollToSlide(Math.max(activeIndex - 1, 0));
+      }
+
+      if (event.key === "Home") {
+        event.preventDefault();
+        scrollToSlide(0);
+      }
+
+      if (event.key === "End") {
+        event.preventDefault();
+        scrollToSlide(slides.length - 1);
+      }
+    });
+
+    window.addEventListener("resize", requestCoverFlowUpdate, { passive: true });
+    requestCoverFlowUpdate();
   }
 
   function setupContactForm() {
