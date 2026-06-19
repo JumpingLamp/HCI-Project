@@ -239,31 +239,27 @@ window.portfolioContent = {
     eyebrow: "Moments & Activities",
     lead:
       "A horizontal activity reel for campus moments, events, project work, and personal development highlights.",
+    // Add gallery images explicitly here. Static hosts cannot auto-detect folder contents.
     items: [
       {
-        image: "assets/test.png",
-        alt: "Placeholder for campus activity moment",
+        image: "assets/life_gallery/test%20-%20Copy.png",
+        alt: "Student life gallery sample showing a campus activity moment",
         caption: "Campus activities"
       },
       {
-        image: "assets/test.png",
-        alt: "Placeholder for university event participation",
+        image: "assets/life_gallery/test%20-%20Copy%20%282%29.png",
+        alt: "Student life gallery sample showing university event participation",
         caption: "Events and participation"
       },
       {
-        image: "assets/test.png",
-        alt: "Placeholder for project behind the scenes",
+        image: "assets/life_gallery/test%20-%20Copy%20%283%29.png",
+        alt: "Student life gallery sample showing project behind the scenes",
         caption: "Projects behind the scenes"
       },
       {
-        image: "assets/test.png",
-        alt: "Placeholder for group assignment collaboration",
-        caption: "Group assignment moments"
-      },
-      {
-        image: "assets/test.png",
-        alt: "Placeholder for personal development activity",
-        caption: "Personal development"
+        image: "assets/life_gallery/test%20-%20Copy%20%284%29.png",
+        alt: "Student life gallery sample showing group activity and personal development",
+        caption: "Personal development moments"
       }
     ]
   },
