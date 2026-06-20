@@ -1245,6 +1245,14 @@ textarea {
     --header-height: 68px;
   }
 
+    body {
+        background-image: url("assets/mobile_background.png");
+      }
+
+      [data-theme="dark"] body {
+        background-image: url("assets/mobile_dark_background.png");
+      }
+
   .nav-toggle {
     display: inline-grid;
   }
