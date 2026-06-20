@@ -134,7 +134,7 @@
           <div class="profile-visual" role="img" aria-label="Profile image placeholder for ${escapeHtml(
             data.profile.name
           )}">
-            <img src="assets/test_169.png" alt="${escapeHtml(data.profile.name || 'Profile image')}">
+            <img src="assets/passport.png" alt="${escapeHtml(data.profile.name || 'Profile image')}">
           </div>
           <div class="profile-readout">
             <span class="readout-label">Identity Record</span>
