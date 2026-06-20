@@ -290,20 +290,17 @@
 
         return `
           <article class="project-card reveal">
-            <div
-                  class="project-media media-${(index % 4) + 1}"
-                  role="img"
-                  aria-label="${escapeHtml(project.mediaLabel)} for ${escapeHtml(project.title)}"
-                >
-                  ${project.image
-                                ? `<img src="${project.image}" alt="${escapeHtml(project.title)}">`
-                                : `<span>${escapeHtml(project.mediaLabel)}</span>`
-                  }
-
-                  <div class="media-lines" aria-hidden="true">
-                    <i></i><i></i><i></i><i></i>
-                  </div>
-                </div>
+            <div class="project-media media-${(index % 4) + 1}">
+              ${project.image
+                            ? `<img src="${project.image}" alt="${escapeHtml(project.title)}">`
+                            : `
+                    <span aria-hidden="true">${escapeHtml(project.mediaLabel)}</span>
+                    <div class="media-lines" aria-hidden="true">
+                      <i></i><i></i><i></i><i></i>
+                    </div>
+                  `
+              }
+            </div>
             <div class="project-body">
               <span class="eyebrow">${escapeHtml(project.category)}</span>
               <h3>${escapeHtml(project.title)}</h3>
