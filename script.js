@@ -889,9 +889,9 @@
     const optionBtns = document.querySelectorAll(".option-btn");
 
     const ANSWERS = {
-        q1: "This is a personal portfolio demo website showcasing projects and skills.",
-        q2: "You can explore projects, view experience, and interact with demo UI components.",
-        q3: "This chatbot is a front-end simulation using static responses and session-based memory."
+        q1: "This is a personal portfolio demo website showcasing projects and skills for Goh Kai Yang.",
+        q2: "Goh Kai Yang is a software engineer with experience in web development and UI/UX design.",
+        q3: "His email is gohkaiyang176@gmail.com"
     };
 
     // === Session-only memory ===
