@@ -412,7 +412,12 @@
       { label: "Email", url: `mailto:${data.profile.email}` },
       { label: "GitHub", url: data.profile.github },
       { label: "LinkedIn", url: data.profile.linkedin },
-      { label: "Resume", url: data.profile.resumeFile, uiOnly: data.profile.resumeFile === "#" }
+        {
+            label: "Resume",
+            url: data.profile.resumeFile,
+            uiOnly: data.profile.resumeFile === "#",
+            displayText: data.profile.resumeFile === "#" ? "UI only" : "Click to view"
+        }
     ];
 
     $("#contact").innerHTML = sectionShell(
@@ -430,7 +435,13 @@
                   (link) => `
                     <a class="contact-link" ${linkAttributes(link)}>
                       <span>${escapeHtml(link.label)}</span>
-                      <small>${escapeHtml(link.uiOnly ? "UI only" : link.url.replace(/^mailto:/, ""))}</small>
+                      <small>
+                      ${
+                        link.displayText
+                            ? escapeHtml(link.displayText)
+                            : escapeHtml(link.uiOnly ? "UI only" : link.url.replace(/^mailto:/, ""))
+                      }
+                    </small>
                     </a>
                   `
                 )
