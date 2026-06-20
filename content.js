@@ -202,7 +202,7 @@ window.portfolioContent = {
       technologies: ["Genetic Algorithms", "Optimisation", "Scheduling"],
       mediaLabel: "Genetic Algorithm Implementation",
       links: [
-          { label: "Prototype", url: "https://github.com/JumpingLamp/EvoProject", uiOnly: true },
+          { label: "GitHub", url: "https://github.com/JumpingLamp/EvoProject", uiOnly: true },
       ]
     }
   ],
