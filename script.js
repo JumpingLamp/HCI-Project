@@ -817,3 +817,46 @@
 
   document.addEventListener("DOMContentLoaded", init);
 })();
+
+const toggleBtn = document.getElementById("chatbotToggle");
+const panel = document.getElementById("chatbotPanel");
+const closeBtn = document.getElementById("chatbotClose");
+const form = document.getElementById("chatbotForm");
+const input = document.getElementById("chatbotInput");
+const messages = document.getElementById("chatbotMessages");
+
+toggleBtn.addEventListener("click", () => {
+    panel.hidden = !panel.hidden;
+});
+
+closeBtn.addEventListener("click", () => {
+    panel.hidden = true;
+});
+
+function addMessage(role, text) {
+    const div = document.createElement("div");
+    div.className = role;
+    div.textContent = text;
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+}
+
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const userText = input.value;
+    input.value = "";
+
+    addMessage("user", userText);
+    addMessage("bot", "Thinking...");
+
+    const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: userText })
+    });
+
+    const data = await res.json();
+
+    messages.lastChild.textContent = data.reply;
+});

@@ -13,64 +13,79 @@
     <script src="script.js" defer></script>
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to main content</a>
+      <a class="skip-link" href="#main">Skip to main content</a>
 
-    <header class="site-header" data-header>
-      <nav class="nav-shell" aria-label="Primary navigation">
-        <a class="brand" href="#home" aria-label="Go to home section">
-          <img class="brand-mark" src="assets/logo.png" alt="" aria-hidden="true">
-          <span class="brand-text">
-            <span id="brandName">Academic Profile</span>
-            <small>Personal Portfolio</small>
-          </span>
-        </a>
+      <header class="site-header" data-header>
+          <nav class="nav-shell" aria-label="Primary navigation">
+              <a class="brand" href="#home" aria-label="Go to home section">
+                  <img class="brand-mark" src="assets/logo.png" alt="" aria-hidden="true">
+                  <span class="brand-text">
+                      <span id="brandName">Academic Profile</span>
+                      <small>Personal Portfolio</small>
+                  </span>
+              </a>
 
-        <button
-          class="nav-toggle"
-          type="button"
-          aria-controls="primaryNavigation"
-          aria-expanded="false"
-          aria-label="Open navigation menu"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
+              <button class="nav-toggle"
+                      type="button"
+                      aria-controls="primaryNavigation"
+                      aria-expanded="false"
+                      aria-label="Open navigation menu">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+              </button>
 
-        <div class="nav-panel">
-          <ul class="nav-links" id="primaryNavigation"></ul>
-          <button
-            class="theme-toggle"
-            type="button"
-            id="themeToggle"
-            aria-label="Switch theme"
-            aria-pressed="false"
-          >
-            <span class="theme-toggle-track" aria-hidden="true">
-              <span class="theme-toggle-dot"></span>
-            </span>
-          </button>
-        </div>
-      </nav>
-    </header>
+              <div class="nav-panel">
+                  <ul class="nav-links" id="primaryNavigation"></ul>
+                  <button class="theme-toggle"
+                          type="button"
+                          id="themeToggle"
+                          aria-label="Switch theme"
+                          aria-pressed="false">
+                      <span class="theme-toggle-track" aria-hidden="true">
+                          <span class="theme-toggle-dot"></span>
+                      </span>
+                  </button>
+              </div>
+          </nav>
+      </header>
 
-    <main id="main">
-      <section class="section hero-section" id="home" aria-labelledby="homeTitle"></section>
-      <section class="section" id="about" aria-labelledby="aboutTitle"></section>
-      <section class="section section-alt" id="academic" aria-labelledby="academicTitle"></section>
-      <section class="section" id="skills" aria-labelledby="skillsTitle"></section>
-      <section class="section section-alt" id="projects" aria-labelledby="projectsTitle"></section>
-      <section class="section" id="experience" aria-labelledby="experienceTitle"></section>
-      <section class="section section-alt" id="life-gallery" aria-labelledby="lifeGalleryTitle"></section>
-      <section class="section contact-section" id="contact" aria-labelledby="contactTitle"></section>
-    </main>
+      <main id="main">
+          <section class="section hero-section" id="home" aria-labelledby="homeTitle"></section>
+          <section class="section" id="about" aria-labelledby="aboutTitle"></section>
+          <section class="section section-alt" id="academic" aria-labelledby="academicTitle"></section>
+          <section class="section" id="skills" aria-labelledby="skillsTitle"></section>
+          <section class="section section-alt" id="projects" aria-labelledby="projectsTitle"></section>
+          <section class="section" id="experience" aria-labelledby="experienceTitle"></section>
+          <section class="section section-alt" id="life-gallery" aria-labelledby="lifeGalleryTitle"></section>
+          <section class="section contact-section" id="contact" aria-labelledby="contactTitle"></section>
+      </main>
 
-    <footer class="site-footer" id="siteFooter"></footer>
+      <footer class="site-footer" id="siteFooter"></footer>
 
-    <button class="back-to-top" type="button" aria-label="Back to top" hidden>
-      <span aria-hidden="true">^</span>
-    </button>
+      <button class="back-to-top" type="button" aria-label="Back to top" hidden>
+          <span aria-hidden="true">^</span>
+      </button>
 
-    <div class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+      <div class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+      <!-- Chatbot Floating Button -->
+      <button class="chatbot-fab" id="chatbotToggle" aria-label="Open chatbot">
+          <img src="/assets/chatbot_logo.png" alt="" />
+      </button>
+
+      <!-- Chatbot Panel -->
+      <div class="chatbot-panel" id="chatbotPanel" hidden>
+          <div class="chatbot-header">
+              <span>AI Assistant</span>
+              <button id="chatbotClose" aria-label="Close chat">×</button>
+          </div>
+
+          <div class="chatbot-messages" id="chatbotMessages"></div>
+
+          <form class="chatbot-input" id="chatbotForm">
+              <input type="text" id="chatbotInput" placeholder="Ask something..." required />
+              <button type="submit">Send</button>
+          </form>
+      </div>
   </body>
 </html>
