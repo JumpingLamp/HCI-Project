@@ -170,7 +170,7 @@ window.portfolioContent = {
       mediaLabel: "Forecast Model Preview",
       image: "assets/projects_background/neural_network.jpg",
       links: [
-          { label: "GitHub", url: "https://github.com/cheah20/FUZZY-LOGIC", uiOnly: true }
+          { label: "GitHub", url: "https://github.com/cheah20/FUZZY-LOGIC", uiOnly: false }
       ]
     },
     {
@@ -182,7 +182,7 @@ window.portfolioContent = {
       mediaLabel: "System Architecture Placeholder",
       image: "assets/projects_background/cpp.jpg",
       links: [
-          { label: "GitHub", url: "https://github.com/JumpingLamp/SchoolManagementSystem", uiOnly: true },
+          { label: "GitHub", url: "https://github.com/JumpingLamp/SchoolManagementSystem", uiOnly: false },
       ]
     },
     {
@@ -194,7 +194,7 @@ window.portfolioContent = {
       mediaLabel: "Database Schema Preview",
       image: "assets/projects_background/java.jpg",
       links: [
-          { label: "GitHub", url: "https://github.com/JumpingLamp/2BAXI-OOP-Project", uiOnly: true },
+          { label: "GitHub", url: "https://github.com/JumpingLamp/2BAXI-OOP-Project", uiOnly: false },
       ]
     },
     {
@@ -206,7 +206,7 @@ window.portfolioContent = {
       mediaLabel: "Genetic Algorithm Implementation",
       image: "assets/projects_background/genetic.jpg",
       links: [
-          { label: "GitHub", url: "https://github.com/JumpingLamp/EvoProject", uiOnly: true },
+          { label: "GitHub", url: "https://github.com/JumpingLamp/EvoProject", uiOnly: false },
       ]
     }
   ],
