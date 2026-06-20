@@ -896,10 +896,11 @@ h3 {
 
 .gallery-shell {
     position: relative;
-    display: grid;
     grid-template-rows: auto 1fr auto;
     gap: var(--space-2);
     align-items: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .gallery-track {
@@ -1045,6 +1046,8 @@ h3 {
   flex-wrap: wrap;
   justify-content: center;
   gap: var(--space-1);
+    position: relative;
+  z-index: 2;
 }
 
 .gallery-dot {
@@ -1612,6 +1615,8 @@ textarea {
     margin-inline: -12px;
     padding-inline: 0;
     scroll-padding-inline: calc((100% - var(--gallery-slide-width)) / 2);
+    margin-bottom: var(--space-2);
+    overflow: hidden;
   }
 
   .gallery-slide {
