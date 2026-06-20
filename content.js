@@ -168,6 +168,7 @@ window.portfolioContent = {
         "A stock price prediction prototype using Adaptive Neuro-Fuzzy Inference System concepts to model market behaviour and compare predicted trends with actual values.",
       technologies: ["Python", "ANFIS", "Data preprocessing", "Prediction modelling", "Neural Networks"],
       mediaLabel: "Forecast Model Preview",
+      image: "assets/projects_background/test_169.png",
       links: [
           { label: "GitHub", url: "https://github.com/cheah20/FUZZY-LOGIC", uiOnly: true }
       ]
@@ -179,6 +180,7 @@ window.portfolioContent = {
         "A school management system built with C++ and connected to a MariaDB database for efficient data handling and retrieval.",
       technologies: ["C++", "MariaDB", "Database connectivity", "System design", "SQL"],
       mediaLabel: "System Architecture Placeholder",
+      image: "assets/projects_background/test_169.png",
       links: [
           { label: "GitHub", url: "https://github.com/JumpingLamp/SchoolManagementSystem", uiOnly: true },
       ]
@@ -190,6 +192,7 @@ window.portfolioContent = {
         "A simple hotel management system implemented in Java with Java interface element and JDBI for CRUDS operation",
       technologies: ["SQL", "ERD", "Database design", "Normalisation"],
       mediaLabel: "Database Schema Preview",
+      image: "assets/projects_background/test_169.png",
       links: [
           { label: "GitHub", url: "https://github.com/JumpingLamp/2BAXI-OOP-Project", uiOnly: true },
       ]
@@ -201,6 +204,7 @@ window.portfolioContent = {
         "An optimisation project for scheduling staff using genetic algorithms to improve efficiency and resource allocation.",
       technologies: ["Genetic Algorithms", "Optimisation", "Scheduling"],
       mediaLabel: "Genetic Algorithm Implementation",
+      image: "assets/projects_background/test_169.png",
       links: [
           { label: "GitHub", url: "https://github.com/JumpingLamp/EvoProject", uiOnly: true },
       ]
