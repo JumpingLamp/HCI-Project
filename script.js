@@ -405,7 +405,75 @@
         </div>
       `
     );
+
+    requestAnimationFrame(() => {
+        initInfiniteLifeGallery();
+    });
   }
+
+function initInfiniteLifeGallery() {
+    const track = document.getElementById("lifeGalleryTrack");
+    if (!track) return;
+
+    const slides = Array.from(track.querySelectorAll(".gallery-slide"));
+    const count = slides.length;
+
+    if (count < 2) return;
+
+    // clone last 2 + first 2
+    const prepend = slides.slice(-2).map(s => s.cloneNode(true));
+    const append = slides.slice(0, 2).map(s => s.cloneNode(true));
+
+    prepend.reverse().forEach(n => track.insertBefore(n, track.firstChild));
+    append.forEach(n => track.appendChild(n));
+
+    const getStep = () => {
+        const slide = track.querySelector(".gallery-slide");
+        const gap = parseFloat(getComputedStyle(track).gap || 0);
+        return slide.offsetWidth + gap;
+    };
+
+    let step = getStep();
+
+    // START POSITION (first real slide)
+    track.scrollLeft = step * 2;
+
+    track.addEventListener("scroll", () => {
+        const max = track.scrollWidth - track.clientWidth;
+
+        // -----------------------------
+        // RIGHT EDGE RESET (IMPORTANT)
+        // -----------------------------
+        if (track.scrollLeft >= max - step * 2) {
+
+            // ADD THIS LINE (disable smooth BEFORE jump)
+            track.style.scrollBehavior = "auto";
+
+            track.scrollLeft = step * 2;
+
+            // ADD THIS LINE BACK (restore smooth AFTER jump)
+            requestAnimationFrame(() => {
+                track.style.scrollBehavior = "smooth";
+            });
+        }
+
+        // -----------------------------
+        // LEFT EDGE RESET (IMPORTANT)
+        // -----------------------------
+        if (track.scrollLeft <= 0) {
+
+            // ADD THIS LINE (disable smooth BEFORE jump)
+            track.style.scrollBehavior = "auto";
+
+            track.scrollLeft = max - step * 4;
+
+            // ADD THIS LINE BACK (restore smooth AFTER jump)
+            requestAnimationFrame(() => {
+                track.style.scrollBehavior = "smooth";
+            });
+        }
+    });
+}
 
   function renderContact() {
     const contactLinks = [

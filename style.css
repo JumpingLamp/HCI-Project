@@ -904,7 +904,7 @@ h3 {
   perspective: 1200px;
   scroll-behavior: smooth;
   scroll-padding-inline: calc((100% - var(--gallery-slide-width)) / 2);
-  scroll-snap-type: x proximity;
+  scroll-snap-type: none;
   scrollbar-color: var(--accent) var(--surface-raised);
   scrollbar-width: thin;
   transform-style: preserve-3d;
