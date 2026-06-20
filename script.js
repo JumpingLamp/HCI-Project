@@ -479,25 +479,40 @@
     `;
   }
 
-  function setupTheme() {
-    const button = $("#themeToggle");
-    const storedTheme = localStorage.getItem("portfolio-theme");
-    const preferredTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-    setTheme(storedTheme || preferredTheme);
+    function setupTheme() {
+      const button = $("#themeToggle");
+      const icon = document.getElementById("chatbot-icon");
 
-    button.addEventListener("click", () => {
-      const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
-      setTheme(nextTheme);
-      localStorage.setItem("portfolio-theme", nextTheme);
-    });
+      const storedTheme = localStorage.getItem("portfolio-theme");
+      const preferredTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 
-    function setTheme(theme) {
-      document.documentElement.dataset.theme = theme;
-      const isDark = theme === "dark";
-      button.setAttribute("aria-pressed", String(isDark));
-      button.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+      setTheme(storedTheme || preferredTheme);
+
+      button.addEventListener("click", () => {
+        const nextTheme =
+          document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+
+        setTheme(nextTheme);
+        localStorage.setItem("portfolio-theme", nextTheme);
+      });
+
+      function setTheme(theme) {
+        document.documentElement.dataset.theme = theme;
+
+        const isDark = theme === "dark";
+
+        button.setAttribute("aria-pressed", String(isDark));
+        button.setAttribute(
+          "aria-label",
+          isDark ? "Switch to light mode" : "Switch to dark mode"
+        );
+        if (icon) {
+          icon.src = isDark
+            ? "assets/dark_chatbot.png"
+            : "assets/chatbot.png";
+        }
+      }
     }
-  }
 
   function setupMobileMenu() {
     const header = $("[data-header]");
@@ -815,48 +830,95 @@
     }, 3200);
   }
 
-  document.addEventListener("DOMContentLoaded", init);
-})();
+    document.addEventListener("DOMContentLoaded", init);
 
-const toggleBtn = document.getElementById("chatbotToggle");
-const panel = document.getElementById("chatbotPanel");
-const closeBtn = document.getElementById("chatbotClose");
-const form = document.getElementById("chatbotForm");
-const input = document.getElementById("chatbotInput");
-const messages = document.getElementById("chatbotMessages");
+    const chatbot = document.getElementById("chatbot");
+    const toggleBtn = document.getElementById("chatbot-toggle");
+    const closeBtn = document.getElementById("chatbot-close");
+    const messages = document.getElementById("chatbot-messages");
+    const optionBtns = document.querySelectorAll(".option-btn");
 
-toggleBtn.addEventListener("click", () => {
-    panel.hidden = !panel.hidden;
-});
+    const ANSWERS = {
+        q1: "This is a personal portfolio demo website showcasing projects and skills.",
+        q2: "You can explore projects, view experience, and interact with demo UI components.",
+        q3: "This chatbot is a front-end simulation using static responses and session-based memory."
+    };
 
-closeBtn.addEventListener("click", () => {
-    panel.hidden = true;
-});
+    // === Session-only memory ===
+    function saveMessage(role, text) {
+        const history = JSON.parse(sessionStorage.getItem("chat") || "[]");
+        history.push({ role, text });
+        sessionStorage.setItem("chat", JSON.stringify(history));
+    }
 
-function addMessage(role, text) {
-    const div = document.createElement("div");
-    div.className = role;
-    div.textContent = text;
-    messages.appendChild(div);
-    messages.scrollTop = messages.scrollHeight;
-}
+    function loadMessages() {
+        const history = JSON.parse(sessionStorage.getItem("chat") || "[]");
+        history.forEach(m => addMessage(m.role, m.text));
+    }
 
-form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+    function addMessage(role, text) {
+        const div = document.createElement("div");
+        div.classList.add("msg", role);
+        div.textContent = text;
+        messages.appendChild(div);
+        messages.scrollTop = messages.scrollHeight;
+    }
 
-    const userText = input.value;
-    input.value = "";
+    // === Chat actions ===
+    function showTyping() {
+        const div = document.createElement("div");
+        div.classList.add("msg", "bot");
+        div.innerHTML = `
+    <div class="typing">
+      <span></span><span></span><span></span>
+    </div>
+  `;
+        messages.appendChild(div);
+        messages.scrollTop = messages.scrollHeight;
+        return div;
+    }
 
-    addMessage("user", userText);
-    addMessage("bot", "Thinking...");
+    function botReply(key) {
+        const userText = document.querySelector(`[data-q="${key}"]`).textContent;
 
-    const res = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: userText })
+        addMessage("user", userText);
+        saveMessage("user", userText);
+
+        const typingEl = showTyping();
+
+        setTimeout(() => {
+            typingEl.remove();
+
+            const reply = ANSWERS[key];
+            addMessage("bot", reply);
+            saveMessage("bot", reply);
+        }, 900);
+    }
+
+    // === UI controls ===
+    toggleBtn.addEventListener("click", () => {
+        chatbot.classList.toggle("open");
     });
 
-    const data = await res.json();
+    closeBtn.addEventListener("click", () => {
+        chatbot.classList.remove("open");
+    });
 
-    messages.lastChild.textContent = data.reply;
-});
+    // === Option buttons ===
+    optionBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            botReply(btn.dataset.q);
+        });
+    });
+
+    // load session history
+    loadMessages();
+
+    // clear memory when tab closes
+    window.addEventListener("beforeunload", () => {
+        sessionStorage.removeItem("chat");
+    });
+
+    observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+})();

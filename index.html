@@ -68,24 +68,26 @@
       </button>
 
       <div class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
-      <!-- Chatbot Floating Button -->
-      <button class="chatbot-fab" id="chatbotToggle" aria-label="Open chatbot">
-          <img src="/assets/chatbot_logo.png" alt="" />
+      <!-- Chatbot Button (icon) -->
+      <button id="chatbot-toggle">
+          <img id="chatbot-icon" src="/assets/chatbot.png" />
       </button>
 
       <!-- Chatbot Panel -->
-      <div class="chatbot-panel" id="chatbotPanel" hidden>
-          <div class="chatbot-header">
-              <span>AI Assistant</span>
-              <button id="chatbotClose" aria-label="Close chat">×</button>
+      <div id="chatbot" class="hidden">
+          <div id="chatbot-header">
+              <span>Demo Assistant</span>
+              <button id="chatbot-close">×</button>
           </div>
 
-          <div class="chatbot-messages" id="chatbotMessages"></div>
+          <div id="chatbot-messages"></div>
 
-          <form class="chatbot-input" id="chatbotForm">
-              <input type="text" id="chatbotInput" placeholder="Ask something..." required />
-              <button type="submit">Send</button>
-          </form>
+          <div id="chatbot-options">
+              <button class="option-btn" data-q="q1">What is this website?</button>
+              <button class="option-btn" data-q="q2">What can I do here?</button>
+              <button class="option-btn" data-q="q3">How does this demo work?</button>
+          </div>
+      </div>
       </div>
   </body>
 </html>
