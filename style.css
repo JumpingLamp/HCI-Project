@@ -481,20 +481,14 @@ h3 {
     var(--accent-soft);
   background-size: 28px 28px;
   border-radius: var(--radius);
-}
+  overflow:hidden;
+} 
 
-.profile-visual span {
-  display: grid;
-  width: min(160px, 52vw);
-  aspect-ratio: 1;
-  place-items: center;
-  color: var(--surface);
-  font-size: clamp(2.3rem, 8vw, 4rem);
-  font-weight: 900;
-  background: var(--accent);
-  border: 4px solid var(--surface);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
+.profile-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .profile-readout strong {
