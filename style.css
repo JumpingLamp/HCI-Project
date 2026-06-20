@@ -1245,6 +1245,15 @@ textarea {
     --header-height: 68px;
   }
 
+    body {
+        background-image: url("assets/mobile_background.png");
+    }
+
+    [data-theme="dark"] body {
+        background-image: url("assets/mobile_dark_background.png");
+    }
+
+
   .nav-toggle {
     display: inline-grid;
   }
@@ -1311,8 +1320,12 @@ textarea {
 
 @media (max-width: 640px) {
   body {
-    background-size: 32px 32px;
+    background-image: url("assets/mobile_background.png");
   }
+
+    [data-theme="dark"] body {
+        background-image: url("assets/mobile_dark_background.png");
+    }
 
   .section-shell,
   .nav-shell,
@@ -1417,14 +1430,4 @@ textarea {
     opacity: 1;
     transform: none;
   }
-}
-
-@media (orientation: portrait) {
-    body {
-        background-image: url("assets/mobile_background.png");
-    }
-
-    [data-theme="dark"] body {
-        background-image: url("assets/mobile_dark_background.png");
-    }
 }
