@@ -49,6 +49,10 @@
   --focus: #e9c46a;
 }
 
+[data-theme="dark"] body {
+  background-image: url("assets/dark_background.png");
+}
+
 *,
 *::before,
 *::after {
