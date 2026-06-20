@@ -239,31 +239,36 @@ window.portfolioContent = {
   ],
 
   lifeGallery: {
-    title: "Life Gallery",
+    title: "Gallery",
     eyebrow: "Moments & Activities",
     lead:
       "A horizontal activity reel for campus moments, events, project work, and personal development highlights.",
     // Add gallery images explicitly here. Static hosts cannot auto-detect folder contents.
     items: [
       {
-        image: "assets/life_gallery/test%20-%20Copy.png",
-        alt: "Student life gallery sample showing a campus activity moment",
-        caption: "Campus activities"
+        image: "assets/life_gallery/taekwondo.jpg",
+        alt: "Taekwondo with siblings",
+        caption: "Taekwondo with siblings"
       },
       {
-        image: "assets/life_gallery/test%20-%20Copy%20%282%29.png",
-        alt: "Student life gallery sample showing university event participation",
-        caption: "Events and participation"
+        image: "assets/life_gallery/kem_daerah.jpeg",
+        alt: "Kem Daerah Kadet Bomba during Form 4",
+        caption: "Kem Daerah Kadet Bomba"
       },
       {
-        image: "assets/life_gallery/test%20-%20Copy%20%283%29.png",
-        alt: "Student life gallery sample showing project behind the scenes",
-        caption: "Projects behind the scenes"
+        image: "assets/life_gallery/STPM.jpeg",
+        alt: "Hari Jamuan during STPM",
+        caption: "Celebration event during STPM"
       },
       {
-        image: "assets/life_gallery/test%20-%20Copy%20%284%29.png",
-        alt: "Student life gallery sample showing group activity and personal development",
-        caption: "Personal development moments"
+        image: "assets/life_gallery/jabil.jpg",
+        alt: "Jabil Bootcamp",
+        caption: "Jabil Bootcamp 2025"
+      },
+      {
+        image: "assets/life_gallery/great_hackathon.jpeg",
+        alt: "Great Hackathon",
+        caption: "Great Hackathon 2025"
       }
     ]
   },
