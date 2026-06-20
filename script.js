@@ -411,7 +411,7 @@
     const contactLinks = [
       { label: "Email", url: `mailto:${data.profile.email}` },
       { label: "GitHub", url: data.profile.github },
-      { label: "LinkedIn", url: data.profile.linkedin }s,
+      { label: "LinkedIn", url: data.profile.linkedin },
       { label: "Resume", url: data.profile.resumeFile, uiOnly: data.profile.resumeFile === "#" }
     ];
 
