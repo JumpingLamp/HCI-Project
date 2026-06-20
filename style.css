@@ -895,9 +895,11 @@ h3 {
 }
 
 .gallery-shell {
-  display: grid;
-  gap: var(--space-2);
-  position: relative;
+    position: relative;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: var(--space-2);
+    align-items: center;
 }
 
 .gallery-track {
@@ -905,7 +907,7 @@ h3 {
   display: flex;
   align-items: center;
   gap: clamp(4px, 1.6vw, 18px);
-  overflow-x: auto;
+  overflow-x: hidden;
   overflow-y: hidden;
   overscroll-behavior-inline: contain;
   padding: clamp(28px, 5vw, 56px) 0 var(--space-3);
@@ -917,6 +919,7 @@ h3 {
   scrollbar-width: thin;
   transform-style: preserve-3d;
   touch-action: pan-x pan-y;
+  grid-row: 2;
 }
 
 .gallery-track::before,
@@ -1064,6 +1067,42 @@ h3 {
   width: 48px;
   background: var(--accent);
   border-color: var(--accent-strong);
+}
+
+.gallery-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 50;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: all 180ms ease;
+}
+
+.gallery-nav.prev {
+  left: calc(-1 * var(--space-2));
+}
+
+.gallery-nav.next {
+  right: calc(-1 * var(--space-2));
+}
+
+.gallery-nav:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  transform: translateY(-50%) scale(1.06);
+}
+
+.gallery-nav:active {
+  transform: translateY(-50%) scale(0.96);
 }
 
 .contact-section {

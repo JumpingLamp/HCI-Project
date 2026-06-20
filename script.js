@@ -391,21 +391,71 @@
       gallery.lead,
       `
         <div class="gallery-shell reveal">
+
+          <button class="gallery-nav prev" type="button" aria-label="Previous slide">
+            ‹
+          </button>
+
           <div
             class="gallery-track"
             id="lifeGalleryTrack"
             tabindex="0"
-            aria-label="Life gallery cover flow carousel"
           >
             ${slides}
           </div>
-          <div class="gallery-dots" aria-label="Life gallery slide controls">
+
+          <button class="gallery-nav next" type="button" aria-label="Next slide">
+            ›
+          </button>
+
+          <div class="gallery-dots">
             ${dots}
           </div>
+
         </div>
       `
     );
+    initGalleryControls();
   }
+    function initGalleryControls() {
+        const track = document.getElementById("lifeGalleryTrack");
+        const slides = document.querySelectorAll(".gallery-slide");
+        const prevBtn = document.querySelector(".gallery-nav.prev");
+        const nextBtn = document.querySelector(".gallery-nav.next");
+
+        let index = 0;
+
+        function update() {
+            const slides = document.querySelectorAll(".gallery-slide");
+
+            slides[index].scrollIntoView({
+                behavior: "smooth",
+                inline: "center",
+                block: "nearest"
+            });
+
+            document.querySelectorAll(".gallery-dot").forEach((dot, i) => {
+                dot.classList.toggle("is-active", i === index);
+            });
+        }
+
+        prevBtn.addEventListener("click", () => {
+            index = Math.max(0, index - 1);
+            update();
+        });
+
+        nextBtn.addEventListener("click", () => {
+            index = Math.min(slides.length - 1, index + 1);
+            update();
+        });
+
+        document.querySelectorAll(".gallery-dot").forEach(dot => {
+            dot.addEventListener("click", () => {
+                index = Number(dot.dataset.galleryDot);
+                update();
+            });
+        });
+    }
 
   function renderContact() {
     const contactLinks = [
